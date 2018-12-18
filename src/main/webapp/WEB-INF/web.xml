@@ -20,7 +20,7 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>pl.jedrik94.config.SpringConfiguration</param-value>
+            <param-value>pl.jedrik94.demo.config.DemoConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
