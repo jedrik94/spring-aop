@@ -1,11 +1,20 @@
 package pl.jedrik94.demo.dao;
 
 import org.springframework.stereotype.Component;
+import pl.jedrik94.demo.model.Account;
 
 @Component
 public class AccountDAO implements DAO {
     @Override
     public void addAccount() {
+        System.out.println(this.toString());
+    }
+
+    public void addAccount(Account account) {
+        System.out.println(this.toString());
+    }
+
+    public void addAccount(Account account, boolean isVIP) {
         System.out.println(this.toString());
     }
 
