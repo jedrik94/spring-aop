@@ -11,4 +11,14 @@ public class LoggingAspect {
     public void beforeAddAccountAdvice() {
         System.out.println("DEBUG (jedrik94): Executing @Before advice on addAccount()");
     }
+
+    @Before("execution(void pl.jedrik94.demo.dao.AccountDAO.deleteAccount())")
+    public void beforeDeleteAccountAdvice() {
+        System.out.println("DEBUG (jedrik94): Executing @Before advice on specific deleteAccount()");
+    }
+
+    @Before("execution(* update*())")
+    public void beforeUpdateAdvice() {
+        System.out.println("DEBUG (jedrik94): Executing @Before advice on any update*()");
+    }
 }

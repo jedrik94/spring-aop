@@ -3,7 +3,7 @@ package pl.jedrik94.demo.dao;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccountDAO implements DAO {
+public class MembershipDAO implements DAO {
     @Override
     public void addAccount() {
         System.out.println(this.toString());
@@ -30,4 +30,3 @@ public class AccountDAO implements DAO {
         return "DEBUG (jedrik94): " + this.getClass();
     }
 }
-
