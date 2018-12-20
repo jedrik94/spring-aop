@@ -2,6 +2,7 @@ package pl.jedrik94.demo;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import pl.jedrik94.demo.config.DemoConfig;
+import pl.jedrik94.demo.model.Account;
 import pl.jedrik94.demo.model.Message;
 
 public class App {
@@ -21,8 +22,11 @@ public class App {
         System.out.println("DEBUG (App - main()): setContent()");
         message.setContent("See u soon!! Cya");
 
-        System.out.println("DEBUG (App - main()): toString()");
-        System.out.println(message.toString());
+        System.out.println("DEBUG (App - main()): sendTo()");
+        message.sendTo(new Account());
+
+        System.out.println("DEBUG (App - main()): createListOfReceivers()");
+        message.createListOfReceivers();
 
         context.close();
     }
