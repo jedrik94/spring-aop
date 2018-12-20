@@ -1,5 +1,8 @@
 package pl.jedrik94.demo.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Account {
     private String name;
     private String email;
@@ -18,5 +21,17 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void describeYourself() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
