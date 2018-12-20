@@ -26,7 +26,7 @@ public class App {
         message.sendTo(new Account());
 
         System.out.println("DEBUG (App - main()): createListOfReceivers()");
-        message.createListOfReceivers();
+        System.out.println("DEBUG (App - main()): " + message.createListOfReceivers());
 
         context.close();
     }

@@ -9,6 +9,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import pl.jedrik94.demo.model.Account;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Aspect
@@ -78,5 +79,10 @@ public class LoggingAspect {
     returning = "result")
     public void afterReturningMessage(JoinPoint joinPoint, List<Account> result) {
         System.out.println("DEBUG (afterReturning): List<Account> - " + result);
+
+        if (!result.isEmpty()) {
+            Account tmpAccount = result.get(0);
+            tmpAccount.setName(tmpAccount.getName().toLowerCase());
+        }
     }
 }
