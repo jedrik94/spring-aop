@@ -96,4 +96,13 @@ public class LoggingAspect {
 
         System.out.println("DEBUG (afterThrowing): Exception - " + exception);
     }
+
+    @After("execution(* pl.jedrik94.demo.dao.AccountDAO.findAccountByEmail(..))")
+    public void afterFindAccountByEmail(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+
+        System.out.println("DEBUG (joinPoint): method signature - " + signature);
+
+        System.out.println("DEBUG (afterThrowing): Simple @After");
+    }
 }

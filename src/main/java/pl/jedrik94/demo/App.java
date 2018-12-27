@@ -11,11 +11,13 @@ public class App {
 
         AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
 
+        boolean throwExceptionFlag = false;
+
         try {
-            Account account = accountDAO.findAccountByEmail("zbyszek@gmail.com");
+            Account account = accountDAO.findAccountByEmail("zbyszek@gmail.com", throwExceptionFlag);
         } catch (Exception e) {
             System.out.println("DEBUG (App): Exception");
-            e.printStackTrace();
+            System.out.println("DEBUG (AppException): " + e.getMessage());
         }
 
         context.close();
