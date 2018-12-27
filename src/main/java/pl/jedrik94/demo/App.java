@@ -10,8 +10,10 @@ public class App {
 
         TrafficFortuneService trafficFortuneService = context.getBean("trafficFortuneService", TrafficFortuneService.class);
 
+        boolean thrownExceptionFlag = true;
+
         System.out.println("DEBUG (App): " + trafficFortuneService.getClass().getName());
-        System.out.println(trafficFortuneService.getFortune());
+        System.out.println(trafficFortuneService.getFortune(thrownExceptionFlag));
 
         context.close();
     }

@@ -115,7 +115,15 @@ public class LoggingAspect {
 
         long startTime = System.currentTimeMillis();
 
-        Object returnedObject = proceedingJoinPoint.proceed();
+        Object returnedObject = null;
+
+        try {
+            returnedObject = proceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            System.out.println("DEBUG (exception): " + e.getMessage());
+
+            returnedObject = "Default fortune: nullception.";
+        }
 
         long endTime = System.currentTimeMillis();
 
