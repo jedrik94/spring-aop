@@ -18,6 +18,10 @@ public class AccountDAO implements DAO {
         System.out.println(this.toString());
     }
 
+    public Account findAccountByEmail(String email) {
+        throw new RuntimeException("No such a account in database.");
+    }
+
     @Override
     public void deleteAccount() {
         System.out.println(this.toString());

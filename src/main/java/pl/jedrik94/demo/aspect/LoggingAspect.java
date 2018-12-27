@@ -1,34 +1,35 @@
 package pl.jedrik94.demo.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import pl.jedrik94.demo.model.Account;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Aspect
 @Component
 public class LoggingAspect {
     @Pointcut("execution(* pl.jedrik94.demo.dao.*.*(..))")
-    private void pointcutDAOPackage() {}
+    private void pointcutDAOPackage() {
+    }
 
     @Pointcut("execution(* pl.jedrik94.demo.model.*.*(..))")
-    private void pointcutModelPackage() {}
+    private void pointcutModelPackage() {
+    }
 
     @Pointcut("execution(* pl.jedrik94.demo.model.*.get*(..))")
-    private void pointcutModelPackageGetters() {}
+    private void pointcutModelPackageGetters() {
+    }
 
     @Pointcut("execution(* pl.jedrik94.demo.model.*.set*(..))")
-    private void pointcutModelPackageSetters() {}
+    private void pointcutModelPackageSetters() {
+    }
 
     @Pointcut("pointcutModelPackage() && !(pointcutModelPackageGetters() || pointcutModelPackageSetters())")
-    private void pointcutModelPackageWithoutGetterAndSetters() {}
+    private void pointcutModelPackageWithoutGetterAndSetters() {
+    }
 
     @Before("execution(public void addAccount(..))")
     public void beforeAddAccountAdvice() {
@@ -70,13 +71,13 @@ public class LoggingAspect {
 
         Object[] args = joinPoint.getArgs();
 
-        for (Object arg : args){
+        for (Object arg : args) {
             System.out.println("DEBUG (joinPoint): arg - " + arg);
         }
     }
 
     @AfterReturning(pointcut = "execution(* pl.jedrik94.demo.model.Message.createListOfReceivers())",
-    returning = "result")
+            returning = "result")
     public void afterReturningMessage(JoinPoint joinPoint, List<Account> result) {
         System.out.println("DEBUG (afterReturning): List<Account> - " + result);
 
@@ -84,5 +85,15 @@ public class LoggingAspect {
             Account tmpAccount = result.get(0);
             tmpAccount.setName(tmpAccount.getName().toLowerCase());
         }
+    }
+
+    @AfterThrowing(pointcut = "execution(* pl.jedrik94.demo.dao.AccountDAO.findAccountByEmail(..))",
+    throwing = "exception")
+    public void afterThrowingFindAccountByEmail(JoinPoint joinPoint, Throwable exception) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+
+        System.out.println("DEBUG (joinPoint): method signature - " + signature);
+
+        System.out.println("DEBUG (afterThrowing): Exception - " + exception);
     }
 }
