@@ -122,7 +122,7 @@ public class LoggingAspect {
         } catch (Exception e) {
             System.out.println("DEBUG (exception): " + e.getMessage());
 
-            returnedObject = "Default fortune: nullception.";
+            throw e;
         }
 
         long endTime = System.currentTimeMillis();
