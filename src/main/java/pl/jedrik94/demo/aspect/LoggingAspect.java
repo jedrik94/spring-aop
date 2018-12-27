@@ -1,6 +1,7 @@
 package pl.jedrik94.demo.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -104,5 +105,24 @@ public class LoggingAspect {
         System.out.println("DEBUG (joinPoint): method signature - " + signature);
 
         System.out.println("DEBUG (afterThrowing): Simple @After");
+    }
+
+    @Around("execution(* pl.jedrik94.demo.service.TrafficFortuneService.getFortune(..))")
+    public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+
+        System.out.println("DEBUG (proceedingJoinPoint): method signature - " + signature);
+
+        long startTime = System.currentTimeMillis();
+
+        Object returnedObject = proceedingJoinPoint.proceed();
+
+        long endTime = System.currentTimeMillis();
+
+        long durationTime = endTime - startTime;
+
+        System.out.println("DEBUG (around): method duration (mils) - " + durationTime);
+
+        return returnedObject;
     }
 }
