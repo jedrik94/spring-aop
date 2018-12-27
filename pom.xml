@@ -19,6 +19,7 @@
         <servletApiVersion>2.5</servletApiVersion>
         <mysqlDriverVersion>8.0.13</mysqlDriverVersion>
         <c3p0Version>0.9.5.2</c3p0Version>
+        <aspecjVersion>1.9.2</aspecjVersion>
     </properties>
 
     <build>
@@ -135,7 +136,7 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.2</version>
+            <version>${aspecjVersion}</version>
         </dependency>
     </dependencies>
 </project>
